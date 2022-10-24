@@ -6,8 +6,8 @@ class PythonOrgSearch(unittest.TestCase):
     """A sample test class to show how page object works"""
 
     def setUp(self):
-        self.driver = webdriver.Firefox()
-        self.driver.get("http://www.python.org")
+        self.chromepath = r'../driver-chrome.exe' 
+        self.driver = webdriver.Chrome(self.chromepath)
 
     def test_search_in_python_org(self):
         """Tests python.org search feature. Searches for the word "pycon" then
@@ -15,6 +15,7 @@ class PythonOrgSearch(unittest.TestCase):
         any particular text in search results page. This test verifies that
         the results were not empty."""
 
+        self.driver.get("http://www.python.org")
         #Load the main page. In this case the home page of Python.org.
         main_page = page.MainPage(self.driver)
         #Checks if the word "Python" is in title
@@ -25,6 +26,13 @@ class PythonOrgSearch(unittest.TestCase):
         search_results_page = page.SearchResultsPage(self.driver)
         #Verifies that the results page is not empty
         self.assertTrue(search_results_page.is_results_found(), "No results found.")
+        
+    def test_books_to_scrape(self):
+        self.driver.get("https://books.toscrape.com/")
+        self.driver.get
+        
+        
+        
 
     def tearDown(self):
         self.driver.close()
