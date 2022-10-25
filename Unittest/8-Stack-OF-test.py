@@ -17,27 +17,34 @@ class TitleTest(unittest.TestCase):
     
     def test_title(self):
         title_list = []
-        for info in self.response_info['items']:
-            title_list.append(info['title'])
+        try:
+            for info in self.response_info['items']:
+                title_list.append(info['title'])
+        except KeyError:
+            print("Key Error occured")
             
     def test_users(self):
         users_list = []
         names_counter = 0
         self.now = datetime.now()
         dt_string = self.now.strftime("%d/%m/%Y %H:%M:%S")
-        print("date and time =", dt_string)
-        with open('8-1-1-list-of-users.txt', 'a', encoding="utf-8") as f:
-            f.write(f'{dt_string} ; List of users: ')
-            for info in self.response_info['items']:
-                users_list.append(info['owner']['display_name'])
-                names_counter += 1
-                f.write(info['owner']['display_name'] + ", ")
-                if names_counter % 9 == 0:
-                    f.write('\n')
-            f.write('\n')
-            f.write('\n')
-            f.close()
-    
+        try:
+            self.assertIn('items', self.response_info)  
+            with open('8-1-1-list-of-users.txt', 'a', encoding="utf-8") as f:
+                f.write(f'{dt_string} ; List of users: ')
+                for info in self.response_info['items']:
+                    users_list.append(info['owner']['display_name'])
+                    names_counter += 1
+                    f.write(info['owner']['display_name'] + ", ")
+                    if names_counter % 9 == 0:
+                        f.write('\n')
+                f.write('\n')
+                f.write('\n')
+                f.close()
+        # Be careful of: too many requests from this IP, more requests available in x seconds
+        except KeyError:
+            print("Key Error")
+        
     def test_truth(self):
         simple_string = 'Today is a sunny day'
         a = 5
@@ -73,6 +80,10 @@ class TitleTest(unittest.TestCase):
         # print(f'{unsorted_list}\n{sorted_list}')
         self.assertCountEqual(unsorted_list, sorted_list)
         assert len(sorted_list) == 50
+        
+    def test_lambda_operations(self):
+        x = lambda x,y : x * y
+        self.assertEqual((x(5, 9)),45) 
         
     def teardown(self):
         self.driver.close()
