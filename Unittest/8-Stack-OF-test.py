@@ -16,9 +16,19 @@ class TitleTest(unittest.TestCase):
             
     def test_users(self):
         users_list = []
-        for info in self.response_info['items']:
-            users_list.append(info['owner']['display_name'])
-        assert 'Chris' in users_list
+        names_counter = 0
+
+        with open('8-1-1-list-of-users.txt', 'a', encoding="utf-8") as f:
+            f.write('List of users: ')
+            for info in self.response_info['items']:
+                users_list.append(info['owner']['display_name'])
+                names_counter += 1
+                f.write(info['owner']['display_name'] + ", ")
+                if names_counter % 9 == 0:
+                    f.write('\n')
+            f.write('\n')
+            f.write('\n')
+            f.close()
     
 if __name__ == "__main__":
     unittest.main()
