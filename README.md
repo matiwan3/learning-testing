@@ -1,4 +1,3 @@
 # Repo for tests using selenium Python
 <hr>
-<br>
-<br>
+tests are located in "Unittest" dict
