@@ -43,7 +43,7 @@ class TitleTest(unittest.TestCase):
                 f.close()
         # Be careful of: too many requests from this IP, more requests available in x seconds
         except KeyError:
-            print("Key Error")
+            print("Key Error. To many requests")
         
     def test_truth(self):
         simple_string = 'Today is a sunny day'
