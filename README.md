@@ -1,4 +1,3 @@
-# Repo for tests using selenium Python
+# Repo for tests using unittest and selenium Python, creating API's and database querries, json yaml and csv
 <hr>
-<br>
-<br>
+tests are located in "Unittest" dict
