@@ -3,7 +3,6 @@ from typing import Optional
 from pydantic import BaseModel
 
 app = FastAPI()
-print("hello world")
 class Item(BaseModel):
     name: str
     price: float
