@@ -1,6 +1,6 @@
 import unittest
 from selenium import webdriver
-import tim
+import time
 
 
 class FacebookTest(unittest.TestCase):
