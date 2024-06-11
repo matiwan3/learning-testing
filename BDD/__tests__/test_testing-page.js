@@ -6,6 +6,7 @@ const users = [
 
 test("User Login", () => {
   // Test valid credentials
+  console.log('testing valid usernames and passwords');
   expect(login("user1", "pass123")).toBe(true);
   expect(login("user2", "pass456")).toBe(true);
   expect(login("user3", "pass789")).toBe(true);
