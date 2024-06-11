@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login Page</title>
+    <style>
+        /* Add your custom styles here */
+    </style>
+</head>
+<body>
+    <h1>Login Page</h1>
+    
+    <form>
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+        
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+        
+        <button type="submit">Login</button>
+    </form>
+    
+    <script>
+        // Add your JavaScript code here
+        const users = [
+            { username: "user1", password: "pass123" },
+            { username: "user2", password: "pass456" },
+            { username: "user3", password: "pass789" }
+        ];
+
+        document.querySelector("form").addEventListener("submit", function(event) {
+            event.preventDefault();
+            
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+            
+            const user = users.find(user => user.username === username && user.password === password);
+            
+            if (user) {
+                alert("Login successful!");
+                // Redirect to the desired page
+            } else {
+                alert("Invalid username or password. Please try again.");
+            }
+        });
+    </script>
+</body>
+</html>
+            
