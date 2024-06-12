@@ -1,16 +1,18 @@
 // Version: 1.0
-const { url } = require("../constants/endpoints");
+const { url } = require("../constants/urls");
 
 class ApiClient {
     constructor(request) {
         this.api = {};
         this.request = request;
-    }
 
+        this.requestMessage = function(method, endpoint) {
+            console.log(`[+] ${method} request to ${endpoint}`);
+        };
+    }
     async getOtomotoOffer() {
-        const endpoint = ENDPOINTS.otomoto;
-        const response = await this.request.get(endpoint);
-        return response;
+        const endpoint = url.otomoto;
+        this.requestMessage("GET", endpoint);
     }
 }
 

@@ -1,4 +1,4 @@
-const { url } = require("../../constants/endpoints");
+const { url } = require("../../constants/urls");
 
 class DevPage {
     constructor(page) {
