@@ -6,3 +6,11 @@ package.json
 
 # Ignore node_modules directory
 node_modules/
+
+# Ignore playwright directory
+test-results/
+playwright.config.js
+playwright.yml
+
+# Ignore jmeter directory
+apache-jmeter-5.6.3/
