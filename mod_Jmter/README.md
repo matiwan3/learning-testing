@@ -1,7 +1,5 @@
 # Jmter
 
-# Jmter
-
 [JMeter](https://jmeter.apache.org/) is an open-source software that is used for load testing, performance testing, and functional testing of web applications. It allows you to simulate various scenarios and measure the performance of your application under different loads.
 
 ## Setting up JMeter
@@ -31,3 +29,7 @@ To check if Java is installed on your system, you can follow these steps:
     If Java is not installed, you will see an error message indicating that the command is not recognized.
 
 3. If you don't have Java installed, you can download it from the official website [here](https://www.java.com/en/download/) and follow the installation instructions for your operating system.
+
+
+# installed Jmeter
+![image](https://github.com/matiwan3/learning-testing/assets/93386476/478ab2de-e4da-4d0f-819a-ccd00d0130d5)
