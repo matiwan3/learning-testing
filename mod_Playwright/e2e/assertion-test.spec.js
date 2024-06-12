@@ -13,11 +13,11 @@ test.describe('Test assertion methods', () => {
         await page.close();
     });
 
-    test('auto-retrying assertions', async () => {
+    test('[TEST no. 1] Auto-retrying assertions', async () => {
         expect(true).toBeTruthy();
     });
 
-    test('non-retrying assertions', async () => {
+    test('[TEST no. 2] Non-retrying assertions', async () => {
         expect(1).toBe(1);
     });
 });
