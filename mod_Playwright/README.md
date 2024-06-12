@@ -18,7 +18,7 @@ Installing Playwright Test (npm install --save-dev @playwright/test)…
 
 
 
-## Playwright methods and objects described down below 
+## Playwright methods and objects described down below (づ￣ 3￣)づ
 
-# page object
+### page object
 In Playwright, the "page" object represents a single tab or window in a browser. It provides methods and properties to interact with the web page, such as navigating to URLs, clicking elements, filling forms, and extracting data. You can create a new page using the `browser.newPage()` method. Once you have a page object, you can perform various actions and assertions on it using the Playwright API.
