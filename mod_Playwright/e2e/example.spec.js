@@ -1,5 +1,11 @@
+const { test, expect, afterEach } = require('@playwright/test');
+
 // @ts-check
-const { test, expect } = require('@playwright/test');
+
+afterEach(async ({ page }) => {
+  console.log('[afterEach] Closing the page');
+  await page.close();
+});
 
 test('has title', async ({ page }) => {
   await page.goto('https://playwright.dev/');
