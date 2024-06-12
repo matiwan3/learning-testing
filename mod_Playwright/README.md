@@ -1,4 +1,4 @@
-# Playwright
+# Playwright (づ￣ 3￣)づ
 
 Playwright is a powerful automation framework for web browsers. It allows you to write end-to-end tests and perform browser automation tasks with ease. With Playwright, you can interact with web pages, navigate to URLs, click elements, fill forms, extract data, and much more.
 
@@ -21,7 +21,7 @@ Do you want to use TypeScript or JavaScript? · JavaScript
 √ Install Playwright browsers (can be done manually via 'npx playwright install')? (Y/n) · true  
 Installing Playwright Test (npm install --save-dev @playwright/test)…  
 
-## Playwright methods and objects described down below (づ￣ 3￣)づ
+## Playwright methods and objects described down below
 
 ### page object
 In Playwright, the "page" object represents a single tab or window in a browser. It provides methods and properties to interact with the web page, such as navigating to URLs, clicking elements, filling forms, and extracting data. You can create a new page using the `browser.newPage()` method. Once you have a page object, you can perform various actions and assertions on it using the Playwright API.
