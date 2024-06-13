@@ -1,6 +1,6 @@
 # Jmter
 
-[JMeter](https://jmeter.apache.org/) is an open-source software that is used for load testing, performance testing, and functional testing of web applications. It allows you to simulate various scenarios and measure the performance of your application under different loads.
+[JMeter](https://jmeter.apache.org/) is an open-source software that is used for **load testing**, **performance testing**, and **functional testing** of web applications. It allows you to simulate various scenarios and measure the performance of your application under different loads.
 
 ## Setting up JMeter
 

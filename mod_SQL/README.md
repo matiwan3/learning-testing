@@ -1,3 +1,3 @@
 # SQL
 
-This is the README file for the SQL folder.
+SQL (Structured Query Language) is a programming language used for managing and manipulating relational databases. It provides a standardized way to interact with databases, allowing users to create, modify, and retrieve data. SQL is widely used in various applications and frameworks to perform tasks such as data querying, data manipulation, and database administration. It offers powerful features for data analysis, data integration, and data modeling. SQL frameworks provide additional functionality and abstraction layers on top of the SQL language, making it easier to work with databases and perform complex operations. These frameworks often provide object-relational mapping (ORM) capabilities, query builders, and other tools to simplify database interactions in software development projects.
