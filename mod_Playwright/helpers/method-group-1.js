@@ -1,5 +1,5 @@
 // Version: 1.0
-const { url } = require("../constants/urls");
+const { url } = require('../constants/urls');
 
 class ApiClient {
   constructor(request) {
@@ -13,7 +13,7 @@ class ApiClient {
   async getOtomotoOffer() {
     const endpoint = url.otomoto;
 
-    this.requestMessage("GET", endpoint);
+    this.requestMessage('GET', endpoint);
   }
 }
 

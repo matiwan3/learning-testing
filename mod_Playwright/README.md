@@ -1,3 +1,15 @@
+# Table of Contents
+
+- [Table of Contents](#table-of-contents)
+- [Playwright (づ￣ 3￣)づ](#playwright-づ-3づ)
+  - [Playwright methods and objects described down below](#playwright-methods-and-objects-described-down-below)
+    - [page object](#page-object)
+    - [Difference between import and require](#difference-between-import-and-require)
+  - [Playwright docs](#playwright-docs)
+    - [Writing tests](#writing-tests)
+    - [Test Isolation](#test-isolation)
+    - [Test Fixtures](#test-fixtures)
+
 # Playwright (づ￣ 3￣)づ
 
 Playwright is a powerful automation framework for web browsers. It allows you to write end-to-end tests and perform browser automation tasks with ease. With Playwright, you can interact with web pages, navigate to URLs, click elements, fill forms, extract data, and much more.
@@ -9,7 +21,6 @@ One of the key features of Playwright is its ability to run tests in parallel, w
 Whether you are performing end-to-end testing, automating repetitive tasks, or scraping data from websites, Playwright is a versatile framework that can help you achieve your goals efficiently.
 
 For more information and detailed documentation, please refer to the [Playwright website](https://playwright.dev/).
-
 
 DOC: https://playwright.dev/
 
@@ -41,3 +52,37 @@ In JavaScript, `import` and `require` are both used to import external modules o
 - `import` supports static analysis, which means that the imported modules are resolved at compile-time, allowing for better optimization and tree-shaking. `require` does not have this feature.
 
 Overall, `import` is the recommended syntax for importing modules in modern JavaScript projects, especially in browser environments. However, `require` is still widely used in Node.js and older JavaScript codebases.
+
+## Playwright docs
+
+### Writing tests
+
+### Test Isolation
+Playwright Test is based on the concept of **test fixtures** such as the built in page fixture, which is passed into your test. Pages are isolated between tests due to the Browser Context, which is equivalent to a brand new browser profile, where every test gets a fresh environment, even when multiple tests run in a single Browser.
+
+### Test Fixtures
+
+In Playwright Test, test fixtures are a way to set up and tear down the environment for your tests. They provide a clean and isolated context for each test, ensuring that tests run in a consistent and predictable state.
+
+One of the built-in test fixtures in Playwright Test is the `page` fixture. This fixture provides a new browser page for each test, allowing you to interact with the web page and perform actions specific to that test.
+
+To use the `page` fixture, you can simply include it as a parameter in your test function. Playwright Test will automatically create a new page and pass it to your test function.
+
+```javascript
+const { test, expect } = require('@playwright/test');
+
+test('Example test', async ({ page }) => {
+        // Use the 'page' fixture to interact with the web page
+        await page.goto('https://example.com');
+        const title = await page.title();
+        
+        // Perform assertions using the 'expect' function
+        expect(title).toBe('Example Domain');
+});
+```
+
+By using test fixtures, you can easily set up the necessary environment for your tests, such as launching a browser, navigating to a specific URL, or logging in to a user account. This ensures that each test starts from a known state and can be executed independently.
+
+Test fixtures can also be customized and extended to fit your specific testing needs. You can create your own fixtures by defining functions or classes that set up the desired environment for your tests.
+
+Overall, test fixtures in Playwright Test provide a powerful mechanism for managing the test environment and ensuring test isolation. They help you write clean, maintainable, and reliable tests for your web applications.
