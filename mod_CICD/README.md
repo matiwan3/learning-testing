@@ -1,5 +1,7 @@
 # CICD
 
+![image](https://github.com/matiwan3/learning-testing/assets/93386476/dfa2f5fa-c827-4de2-a0da-312bdaff5ce2)
+
 Continuous Integration and Continuous Deployment (CICD) is a software development practice that aims to automate the process of building, testing, and deploying applications. It helps teams deliver high-quality software faster and more efficiently.
 
 Here are some good practices to follow when implementing CICD:
