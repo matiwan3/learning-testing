@@ -93,19 +93,19 @@ These tools and frameworks provide capabilities for load generation, performance
 
 When it comes to naming files, variables, and classes, it's important to follow certain naming conventions to ensure code readability and maintainability. Here are some best practices:
 
-File Names:
+**File Names:**
 Use lowercase letters.
 Separate words with hyphens or underscores.
 Avoid using spaces or special characters.
 Example: test-various-methods.js
 
-Variable Names:
+**Variable Names:**
 Use camelCase for variables and function names.
 Start with a lowercase letter.
 Choose descriptive and meaningful names.
 Example: var myVariable = 10;
 
-Class Names:
+**Class Names:**
 Use PascalCase for class names.
 Start with an uppercase letter.
 Choose descriptive and meaningful names.
