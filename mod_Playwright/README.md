@@ -25,3 +25,19 @@ Installing Playwright Test (npm install --save-dev @playwright/test)…
 
 ### page object
 In Playwright, the "page" object represents a single tab or window in a browser. It provides methods and properties to interact with the web page, such as navigating to URLs, clicking elements, filling forms, and extracting data. You can create a new page using the `browser.newPage()` method. Once you have a page object, you can perform various actions and assertions on it using the Playwright API.
+
+### Difference between import and require
+
+In JavaScript, `import` and `require` are both used to import external modules or files into your code. However, there are some key differences between them:
+
+- `require` is a CommonJS syntax used in Node.js, while `import` is an ES6 syntax used in modern JavaScript environments.
+
+- `require` is a synchronous function, meaning that it blocks the execution of the code until the required module is loaded. On the other hand, `import` is asynchronous and allows for more efficient loading of modules.
+
+- `require` is used to import the entire module or file, while `import` allows you to selectively import specific parts of a module using named imports or default imports.
+
+- `require` uses `module.exports` to export modules, while `import` uses `export` and `export default` to export modules.
+
+- `import` supports static analysis, which means that the imported modules are resolved at compile-time, allowing for better optimization and tree-shaking. `require` does not have this feature.
+
+Overall, `import` is the recommended syntax for importing modules in modern JavaScript projects, especially in browser environments. However, `require` is still widely used in Node.js and older JavaScript codebases.

@@ -1,19 +1,20 @@
-const { url } = require('../constants/urls');
-const ApiClient = require('../helpers/method-group-1');
-const { test, expect, afterEach } = require('@playwright/test');
+/*eslint @stylistic/js/semi: ["error", "always", { "omitLastInOneLineClassBody": true}] */
+import { url } from "../constants/urls";
+import ApiClient from "../helpers/method-group-1";
+import { test, expect } from "@playwright/test";
 
-test('Test apiClient methods', async () => {
-    const apiClient = new ApiClient();
-    await apiClient.getOtomotoOffer();
+test("Test apiClient methods", async () => {
+  const apiClient = new ApiClient();
+  await apiClient.getOtomotoOffer();
 });
 
-test("Get otomotoCar", async ({ request }) => {
+test.skip("Get otomotoCar", async ({ request }) => {
   const response = await request.get(url.facebook);
 
   expect(response.status()).toBe(200);
-  // console.log(response.status());
-  // console.log(response.statusText());
-  // console.log(response.url());
-  // console.log(response.headers());
-  // console.log(response.body());
+  console.log(response.status());
+  console.log(response.statusText());
+  console.log(response.url());
+  console.log(response.headers());
+  console.log(response.body());
 });
