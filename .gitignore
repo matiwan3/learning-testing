@@ -15,4 +15,5 @@ playwright.yml
 # Ignore jmeter directory
 apache-jmeter-5.6.3/
 
+# Ignore vscode directory
 .vscode/

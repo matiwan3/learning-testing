@@ -138,3 +138,52 @@ const { webkit } = require('playwright');
 ```
 
 By leveraging WebKit in your Playwright tests, you can expand your test coverage and ensure that your web applications work seamlessly across different browsers and platforms.
+
+# npm
+
+npm (Node Package Manager) is a package manager for the JavaScript programming language. It is the default package manager for Node.js, a popular runtime environment for executing JavaScript code outside of a web browser.
+
+With npm, developers can easily install, manage, and share reusable JavaScript code packages, also known as modules or packages. These packages can contain libraries, frameworks, tools, and other dependencies that help streamline the development process.
+
+npm provides a vast ecosystem of packages that can be easily accessed and integrated into projects. It allows developers to specify dependencies in a package.json file, which lists all the required packages and their versions. This makes it easy to reproduce and share projects with other developers.
+
+Some key features of npm include:
+
+- Package installation: npm allows developers to install packages from the npm registry or from local directories. It automatically resolves dependencies and installs the required packages.
+
+- Version management: npm provides tools for managing package versions, including updating packages to the latest version or specifying specific versions for compatibility.
+
+- Script execution: npm allows developers to define custom scripts in the package.json file, which can be executed using the `npm run` command. This enables automation of common development tasks.
+
+- Publishing packages: npm provides a straightforward process for publishing packages to the npm registry. This allows developers to share their code with the community and make it easily accessible to others.
+
+- Collaboration and security: npm supports collaboration between developers by allowing them to share code privately or publicly. It also includes security features to detect and mitigate potential vulnerabilities in packages.
+
+To use npm, you need to have Node.js installed on your system. Once installed, you can use the npm command-line interface (CLI) to interact with the npm registry and manage packages.
+
+Here are some common npm commands:
+
+- `npm install`: Installs all the dependencies listed in the package.json file.
+
+- `npm install <package-name>`: Installs a specific package.
+
+- `npm update`: Updates all the packages to their latest versions.
+
+- `npm run <script-name>`: Executes a custom script defined in the package.json file.
+
+- `npm publish`: Publishes a package to the npm registry.
+
+- `npm search <keyword>`: Searches for packages in the npm registry.
+
+- `npm init`: Initializes a new package.json file for your project.
+
+npm is widely used in the JavaScript ecosystem and has become an essential tool for JavaScript developers. It simplifies the process of managing dependencies and enables efficient code reuse, making it easier to build robust and scalable applications.
+
+# Node.js
+Node.js is a JavaScript runtime environment that allows developers to execute JavaScript code outside of a web browser. It provides a platform for building server-side and networking applications using JavaScript.
+
+Node.js is closely related to npm (Node Package Manager), which is the default package manager for Node.js. npm allows developers to easily install, manage, and share reusable JavaScript code packages, also known as modules or packages. These packages can contain libraries, frameworks, tools, and other dependencies that help streamline the development process.
+
+With npm, developers can specify dependencies in a package.json file, which lists all the required packages and their versions. npm automatically resolves dependencies and installs the required packages, making it easy to reproduce and share projects with other developers.
+
+In summary, Node.js provides the runtime environment for executing JavaScript code, while npm provides the package management capabilities for managing dependencies and integrating reusable code packages into Node.js projects.
