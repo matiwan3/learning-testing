@@ -1,0 +1,17 @@
+{
+  "name": "mod_playwright",
+  "version": "1.0.0",
+  "description": "- [Table of Contents](#table-of-contents) - [Playwright (づ￣ 3￣)づ](#playwright-づ-3づ)   - [Playwright methods and objects described down below](#playwright-methods-and-objects-described-down-below)     - [page object](#page-object)     - [Difference between import and require](#difference-between-import-and-require)   - [Playwright docs](#playwright-docs)     - [Writing tests](#writing-tests)     - [Test Isolation](#test-isolation)     - [Test Fixtures](#test-fixtures)",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {},
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.44.1",
+    "@types/node": "^20.14.2"
+  }
+}
