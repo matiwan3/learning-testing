@@ -1,4 +1,4 @@
-# Repo for creating a tests in various methodologies 
+# Repo for creating a tests in various methodologies (size: ~235.93 MB) 
 
 ## Test types and tools
 Blog: https://testerzy.pl/baza-wiedzy/narzedzia/10-najlepszych-narzedzi-do-testow-wydajnosci
