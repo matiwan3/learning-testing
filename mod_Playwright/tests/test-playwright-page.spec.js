@@ -1,5 +1,6 @@
 // @ts-check | is a directive that enables TypeScript checking in the file.
 import { test, expect, afterEach, beforeEach } from '@playwright/test';
+import { url } from '../constants/urls';
 
 beforeEach(async () => {
   console.log('[+] Executing before each test...');
@@ -11,14 +12,14 @@ afterEach(async ({ page }) => {
 });
 
 test('has title', async ({ page }) => {
-  await page.goto('https://playwright.dev/');
+  await page.goto(url.playwright);
 
   // Expect a title "to contain" a substring.
   await expect(page).toHaveTitle(/Playwright/);
 });
 
 test('get started link', async ({ page }) => {
-  await page.goto('https://playwright.dev/');
+  await page.goto(url.playwright);
   await expect(page).toHaveTitle(/Playwright/);
 
   // Click the get started link.
