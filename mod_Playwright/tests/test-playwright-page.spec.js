@@ -1,12 +1,12 @@
 // @ts-check | is a directive that enables TypeScript checking in the file.
-import { test, expect, afterEach, beforeEach } from '@playwright/test';
+import { test, expect } from '@playwright/test';
 import { url } from '../constants/urls';
 
-beforeEach(async () => {
+test.beforeEach(async () => {
   console.log('[+] Executing before each test...');
 });
 
-afterEach(async ({ page }) => {
+test.afterEach(async ({ page }) => {
   console.log('[+] Executing after each test...');
   await page.close();
 });

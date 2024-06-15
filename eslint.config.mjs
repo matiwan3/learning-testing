@@ -1,7 +1,8 @@
 // Installation:
 // npm install --save-dev eslint @eslint/js
 // npm i -D @stylistic/eslint-plugin-js
-
+// npm install @stylistic/eslint-plugin-js
+// restart the extension
 import stylisticJs from '@stylistic/eslint-plugin-js';
 
 export default {

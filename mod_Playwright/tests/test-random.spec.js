@@ -1,16 +1,16 @@
-import { test, expect, beforeEach, afterEach } from '@playwright/test';
+import { test, expect } from '@playwright/test';
 import { DevPage } from '../pages/playwright/dev';
 
 // DOC: https://playwright.dev/docs/test-assertions
 test.describe('Test assertion methods', () => {
-  beforeEach(async ({ page }) => {
+  test.beforeEach(async ({ page }) => {
     console.log('[+] Executing before each test');
     const devPage = new DevPage(page);
 
     await devPage.goto();
   });
 
-  afterEach(async ({ page }) => {
+  test.afterEach(async ({ page }) => {
     console.log('[+] Executing after each test');
     await page.close();
   });

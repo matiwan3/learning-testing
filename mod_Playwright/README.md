@@ -9,6 +9,7 @@
     - [Writing tests](#writing-tests)
     - [Test Isolation](#test-isolation)
     - [Test Fixtures](#test-fixtures)
+    - [Best practices](#best-practices)
 
 # Playwright (づ￣ 3￣)づ
 
@@ -86,3 +87,23 @@ By using test fixtures, you can easily set up the necessary environment for your
 Test fixtures can also be customized and extended to fit your specific testing needs. You can create your own fixtures by defining functions or classes that set up the desired environment for your tests.
 
 Overall, test fixtures in Playwright Test provide a powerful mechanism for managing the test environment and ensuring test isolation. They help you write clean, maintainable, and reliable tests for your web applications.
+
+### <a href="https://playwright.dev/docs/best-practices">Best practices</a>
+
+**Test user-visible behavior**
+Automated tests should verify that the application code works for the end users, and avoid relying on implementation details such as things which users will not typically use, see, or even know about such as the name of a function, whether something is an array, or the CSS class of some element. The end user will see or interact with what is rendered on the page, so your test should typically only see/interact with the same rendered output.
+
+**Make tests as isolated as possible**
+Each test should be completely isolated from another test and should run independently with its own local storage, session storage, data, cookies etc. Test isolation improves reproducibility, makes debugging easier and prevents cascading test failures.
+
+**Testing with a database**
+If working with a database then make sure you control the data. Test against a staging environment and make sure it doesn't change. For visual regression tests make sure the operating system and browser versions are the same.
+
+**Use locators**
+In order to write end to end tests we need to first find elements on the webpage. We can do this by using Playwright's built in locators. Locators come with auto waiting and retry-ability. Auto waiting means that Playwright performs a range of actionability checks on the elements, such as ensuring the element is visible and enabled before it performs the click. To make tests resilient, we recommend prioritizing user-facing attributes and explicit contracts.
+
+**Use web first assertions**
+Assertions are a way to verify that the expected result and the actual result matched or not. By using web first assertions Playwright will wait until the expected condition is met. For example, when testing an alert message, a test would click a button that makes a message appear and check that the alert message is there. If the alert message takes half a second to appear, assertions such as toBeVisible() will wait and retry if needed.
+
+**Use Soft assertions**
+If your test fails, Playwright will give you an error message showing what part of the test failed which you can see either in VS Code, the terminal, the HTML report, or the trace viewer. However, you can also use soft assertions. These do not immediately terminate the test execution, but rather compile and display a list of failed assertions once the test ended.
