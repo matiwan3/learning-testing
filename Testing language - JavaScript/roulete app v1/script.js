@@ -2,7 +2,8 @@ let balance = 500;
 let chosenColor = null;
 let chosenBet = 0;
 let previousBet = 0;
-let highestBalance = 0; // Variable to store the highest balance
+let highestBalance = 0;
+let highestWinPrice = 0; // Variable to store the highest bet win price
 
 // Create an audio element for the sound effect
 const soundEffect = new Audio('cash-register-sound.mp3');
@@ -30,8 +31,8 @@ function doublePreviousBet() {
   let bet = previousBet * 2;
 
   if (bet > balance) {
-  alert('You do not have enough balance for this bet.');
-  return;
+    alert('You do not have enough balance for this bet.');
+    return;
   }
   chosenBet = bet;
   document.getElementById('chosenBet').innerHTML = `Chosen bet: <strong>$${chosenBet}</strong>`;
@@ -39,61 +40,81 @@ function doublePreviousBet() {
 
 function play() {
   if (chosenBet === 0) {
-  alert('Please choose a bet amount.');
-  return;
+    alert('Please choose a bet amount.');
+    return;
   }
   if (!chosenColor) {
-  alert('Please choose a color.');
-  return;
+    alert('Please choose a color.');
+    return;
   }
 
+  // Disable the "Place Bet" button
+  document.getElementById('placeBetButton').disabled = true;
+  document.getElementById('placeBetButton').style.backgroundColor = 'gray';
   spin().then(result => {
   let resultText = `The ball landed on ${result.color} ${result.number}.`;
-  let winAmount = 0;
+    let winAmount = 0;
 
-  if (result.color === chosenColor) {
-    if (chosenColor === 'green') {
-    winAmount = chosenBet * 5;
-    } else if (chosenColor === 'red'){
-    winAmount = chosenBet * 2;
+    if (result.color === chosenColor) {
+      if (chosenColor === 'green') {
+        winAmount = chosenBet * 5;
+      } else if (chosenColor === 'red') {
+        winAmount = chosenBet * 2;
+      } else {
+        winAmount = chosenBet * 3;
+      }
+      balance += winAmount;
+      resultText += ` <span class="win-text" style="color: ${result.color}">You win!</span>`;
+      // Play the sound effect when winning
+      soundEffect.play();
+
+      // Update the highest bet win price if necessary
+      if (winAmount > highestWinPrice) {
+        highestWinPrice = winAmount;
+        document.getElementById('highestWinPrice').innerHTML = `Highest Win Price: <strong>$${highestWinPrice}</strong>`;
+      }
     } else {
-    winAmount = chosenBet * 3;
+      balance -= chosenBet;
+      resultText += ' You lose!';
     }
-    balance += winAmount;
-    resultText += ` <span class="win-text" style="color: ${result.color}">You win!</span>`;
-    // Play the sound effect when winning
-    soundEffect.play();
-  } else {
-    balance -= chosenBet;
-    resultText += ' You lose!';
-  }
 
-  previousBet = chosenBet;
-  chosenBet = 0;
-  updateHistory(result.color, previousBet, balance, winAmount, chosenColor);
-  
-  chosenColor = null; // Reset chosen color
-  document.getElementById('balance').innerHTML = `Your current balance is <strong><span style="color: gold">$${balance}</span></strong>`;
-  document.getElementById('chosenBet').innerHTML = `Chosen bet: <strong>$${chosenBet}</strong>`;
-  document.getElementById('chosenColor').innerText = 'Chosen color: None';
+    previousBet = chosenBet;
+    chosenBet = 0;
+    updateHistory(result.color, previousBet, balance, winAmount, chosenColor);
 
-  if (balance > highestBalance) {
-    highestBalance = balance; // Update the highest balance
-    document.getElementById('highestBalance').innerHTML = `Highest Balance: <strong>$${highestBalance}</strong>`;
-  }
+    chosenColor = null; // Reset chosen color
+    document.getElementById('balance').innerHTML = `Your current balance is <strong><span style="color: gold">$${balance}</span></strong>`;
+    document.getElementById('chosenBet').innerHTML = `Chosen bet: <strong>$${chosenBet}</strong>`;
+    document.getElementById('chosenColor').innerText = 'Chosen color: None';
 
-  if (balance <= 0) {
-    alert('You have run out of money. Game over.');
-    document.getElementById('balance').innerHTML = 'Your current balance is <strong>$0<strong>.';
-    document.querySelector('button').disabled = true;
-  }
+    if (balance > highestBalance) {
+      highestBalance = balance; // Update the highest balance
+      document.getElementById('highestBalance').innerHTML = `Highest Balance: <strong>$${highestBalance}</strong>`;
+    }
+
+    if (balance <= 0) {
+      alert('You have run out of money. Game over.');
+      document.getElementById('balance').innerHTML = 'Your current balance is <strong>$0<strong>.';
+      document.querySelector('button').disabled = true;
+    }
   }).catch(error => {
-  console.error(error);
+    console.error(error);
+  }).finally(() => {
+    // Enable the "Place Bet" button
+    document.getElementById('placeBetButton').disabled = false;
+    document.getElementById('placeBetButton').style.backgroundColor = 'rgb(11, 186, 230)';
   });
 }
 
 function updateHistory(resultColor, bet, balance, winAmount, chosenColor) {
   const historyContainer = document.getElementById('historyContainer');
+  const historyItems = historyContainer.getElementsByClassName('history-item');
+
+  // Remove the oldest history item if there are already 10 items
+  if (historyItems.length >= 10) {
+    historyContainer.removeChild(historyItems[0]);
+  }
+
   const historyItem = document.createElement('div');
 
   historyItem.className = 'history-item';
@@ -101,6 +122,8 @@ function updateHistory(resultColor, bet, balance, winAmount, chosenColor) {
     <div class="history-ball" style="background-color: ${resultColor}"></div>
     <p>Bet: $${bet} | Won: $${winAmount} | Balance: <strong style="color: ${resultColor === chosenColor ? 'green' : 'red'}">${balance > 0 ? '$' + balance : '<span style="color: red">-$' + Math.abs(balance) + '</span>'}</strong></p>
   `;
+
+  // Append the new history item
   historyContainer.appendChild(historyItem);
 }
 
@@ -111,11 +134,19 @@ highestBalanceDiv.id = 'highestBalance';
 highestBalanceDiv.innerHTML = `Highest Balance: <strong>$${highestBalance}</strong>`;
 historyContainer.appendChild(highestBalanceDiv);
 
-// Add CSS to center the highest balance div
+// Add the "Highest Win Price" div to the game history
+const highestWinPriceDiv = document.createElement('div');
+highestWinPriceDiv.id = 'highestWinPrice';
+highestWinPriceDiv.innerHTML = `Highest Win Price: <strong>$${highestWinPrice}</strong>`;
+historyContainer.appendChild(highestWinPriceDiv);
+
+// Add CSS to center the highest balance and highest win price divs
 highestBalanceDiv.style.display = 'flex';
 highestBalanceDiv.style.justifyContent = 'center';
+highestWinPriceDiv.style.display = 'flex';
+highestWinPriceDiv.style.justifyContent = 'center';
 
-;(function(loader) {
+(function (loader) {
   document.addEventListener("DOMContentLoaded", loader[0], false);
 })([function (eventLoadedPage) {
   "use strict";
@@ -143,38 +174,37 @@ highestBalanceDiv.style.justifyContent = 'center';
   function spin_promise(color, number) {
     spinningEffect.play();
     return new Promise((resolve, reject) => {
-    if (
-      (color === "green" || color === "g") && (number >= 0 && number <= 3) ||
-      (color === "black" || color === "b") && (number >= 4 && number <= 9) ||
-      (color === "red" || color === "r") && (number >= 10 && number <= 21)
-    ) {
-      let index, pixels, circles, pixelsStart;
+      if (
+        (color === "green" || color === "g") && (number >= 0 && number <= 3) ||
+        (color === "black" || color === "b") && (number >= 4 && number <= 9) ||
+        (color === "red" || color === "r") && (number >= 10 && number <= 21)
+      ) {
+        let index, pixels, circles, pixelsStart;
 
-      color = color[0];
-      index = pallete.indexOf(color + "" + number);
-      pixels = width * (index + 1);
-      circles = 1760 * 15;
+        color = color[0];
+        index = pallete.indexOf(color + "" + number);
+        pixels = width * (index + 1);
+        circles = 1760 * 15;
 
-      pixels -= 80;
-      pixels = rand(pixels + 2, pixels + 79);
-      pixelsStart = pixels;
-      pixels += circles;
-      pixels *= -1;
+        pixels -= 80;
+        pixels = rand(pixels + 2, pixels + 79);
+        pixelsStart = pixels;
+        pixels += circles;
+        pixels *= -1;
+        wrap.style.backgroundPosition = ((pixels + (wrap.offsetWidth / 2)) + "") + "px";
+        setTimeout(() => {
+          wrap.style.transition = "none";
+          let pos = (((pixels * -1) - circles) * -1) + (wrap.offsetWidth / 2);
+          wrap.style.backgroundPosition = String(pos) + "px";
+          setTimeout(() => {
+            wrap.style.transition = "background-position 2s"; // Shortened the spinning time to 2 seconds
+            resolve();
+          }, 210); // Shortened the timeout to 210 milliseconds
 
-      wrap.style.backgroundPosition = ((pixels + (wrap.offsetWidth / 2)) + "") + "px";
-      setTimeout(() => {
-      wrap.style.transition = "none";
-      let pos = (((pixels * -1) - circles) * -1) + (wrap.offsetWidth / 2);
-      wrap.style.backgroundPosition = String(pos) + "px";
-      setTimeout(() => {
-        wrap.style.transition = "background-position 2s"; // Shortened the spinning time to 2 seconds
-        resolve();
-      }, 210); // Shortened the timeout to 210 milliseconds
-
-      }, 2000 + 700); // Shortened the timeout to 2000 milliseconds
-    } else {
-      reject("Invalid color or number");
-    }
+        }, 2000 + 700); // Shortened the timeout to 2000 milliseconds
+      } else {
+        reject("Invalid color or number");
+      }
     });
   }
 
