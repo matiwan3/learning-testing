@@ -4,74 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title>Roulette Game</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            padding: 20px;
-            display: flex;
-            background-image: url('background-body.png');
-            background-size: cover;
-            background-position: center;
-        }
-        .main {
-            flex: 1;
-            text-align: center;
-        }
-        #balance, #result, #chosenColor, #chosenBet {
-            font-size: 20px;
-            margin: 10px;
-        }
-        .color-button, .bet-button {
-            margin: 5px;
-            padding: 10px 20px;
-            font-size: 16px;
-            background-color: rgb(11, 186, 230)
-        }
-        .win-indicator {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            margin: 20px auto;
-        }
-        .history {
-            width: 2vh;
-            flex: 1;
-            margin-left: 20px;
-            text-align: left;
-            border: solid black 1px;
-            background-image: url('background-history.png');
-        }
-        .history p {
-            margin: 0;
-        }
-        .history-item {
-            border-bottom: 1px solid #ccc;
-            padding: 10px 0;
-            display: flex;
-            align-items: center;
-            margin: auto;
-            justify-content: center;
-        }
-        .history-ball {
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            margin-right: 10px;
-        }
-        .win-text {
-            font-weight: bold;
-            font-size: 24px;
-        }
-        .place-bet-button {
-            padding: 10px 20px;
-            font-size: 20px;
-            background-color: rgb(145, 248, 255);
-            color: black;
-            margin-top: 20px;
-            font-weight: bold;
-        }
-    </style>
 </head>
 <body>
     <div class="main">
@@ -79,9 +13,9 @@
         
         <div>
             <p>Choose a color:</p>
-            <button class="color-button" onclick="chooseColor('red')" style="background-color: red; color: white;">Red</button>
-            <button class="color-button" onclick="chooseColor('black')" style="background-color: black; color: white;">Black</button>
-            <button class="color-button" onclick="chooseColor('green')" style="background-color: green; color: white;">Green</button>
+            <button class="color-button" onclick="chooseColor('red')" style="background-color: red; color: white;">Red (47%)</button>
+            <button class="color-button" onclick="chooseColor('black')" style="background-color: black; color: white;">Black (47%)</button>
+            <button class="color-button" onclick="chooseColor('green')" style="background-color: green; color: white;">Green (6%)</button>
         </div>
         
         <div>
@@ -91,19 +25,20 @@
             <button class="bet-button" onclick="chooseBet(100)">Bet $100</button>
             <button class="bet-button" onclick="chooseBet(Math.floor(balance * 0.1))">Bet 10% of balance</button>
             <button class="bet-button" onclick="doublePreviousBet()">Double Previous Bet</button>
-            <div>
-                <label for="customBet">Enter custom bet:</label>
-                <input type="number" id="customBet" min="1">
-                <button class="bet-button" onclick="chooseCustomBet()">Bet Custom Amount</button>
-            </div>
         </div>
         <p id="balance">Your current balance is <strong>$500</strong>.</p>
         <p id="chosenColor">Chosen color: None</p>
         <p id="chosenBet">Chosen bet: <b>$0</b></p>
 
         <button class="place-bet-button" onclick="play()">Place Bet</button>
-        <p id="result"></p>
-        <div id="winIndicator" class="win-indicator"></div>
+
+        <div class="roulette">
+            <div class="roulette-container">
+              <div class="wrap">
+                <div class="controller"></div>
+              </div>
+            </div>
+          </div>
     </div>
     <div class="history">
         <div>
