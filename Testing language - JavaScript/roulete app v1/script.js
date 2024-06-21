@@ -8,6 +8,7 @@ let highestWinPrice = 0; // Variable to store the highest bet win price
 // Create an audio element for the sound effect
 const soundEffect = new Audio('cash-register-sound.mp3');
 const spinningEffect = new Audio('spin.mp3');
+const loseEffect = new Audio('losebet.mp3');
 
 function chooseColor(color) {
   chosenColor = color;
@@ -17,10 +18,6 @@ function chooseColor(color) {
 function chooseBet(bet) {
   if (bet > balance) {
     alert('You do not have enough balance for this bet.');
-    return;
-  }
-  if (!chosenColor) {
-    alert('Please choose a color before placing a bet.');
     return;
   }
   chosenBet = bet;
@@ -52,12 +49,12 @@ function play() {
   document.getElementById('placeBetButton').disabled = true;
   document.getElementById('placeBetButton').style.backgroundColor = 'gray';
   spin().then(result => {
-  let resultText = `The ball landed on ${result.color} ${result.number}.`;
+    let resultText = `The ball landed on ${result.color} ${result.number}.`;
     let winAmount = 0;
 
     if (result.color === chosenColor) {
       if (chosenColor === 'green') {
-        winAmount = chosenBet * 5;
+        winAmount = chosenBet * 8;
       } else if (chosenColor === 'red') {
         winAmount = chosenBet * 2;
       } else {
@@ -74,6 +71,7 @@ function play() {
         document.getElementById('highestWinPrice').innerHTML = `Highest Win Price: <strong>$${highestWinPrice}</strong>`;
       }
     } else {
+      loseEffect.play();
       balance -= chosenBet;
       resultText += ' You lose!';
     }
@@ -82,10 +80,9 @@ function play() {
     chosenBet = 0;
     updateHistory(result.color, previousBet, balance, winAmount, chosenColor);
 
-    chosenColor = null; // Reset chosen color
+    // Do not reset chosen color
     document.getElementById('balance').innerHTML = `Your current balance is <strong><span style="color: gold">$${balance}</span></strong>`;
     document.getElementById('chosenBet').innerHTML = `Chosen bet: <strong>$${chosenBet}</strong>`;
-    document.getElementById('chosenColor').innerText = 'Chosen color: None';
 
     if (balance > highestBalance) {
       highestBalance = balance; // Update the highest balance
@@ -105,6 +102,7 @@ function play() {
     document.getElementById('placeBetButton').style.backgroundColor = 'rgb(11, 186, 230)';
   });
 }
+
 
 function updateHistory(resultColor, bet, balance, winAmount, chosenColor) {
   const historyContainer = document.getElementById('historyContainer');
@@ -197,11 +195,11 @@ highestWinPriceDiv.style.justifyContent = 'center';
           let pos = (((pixels * -1) - circles) * -1) + (wrap.offsetWidth / 2);
           wrap.style.backgroundPosition = String(pos) + "px";
           setTimeout(() => {
-            wrap.style.transition = "background-position 2s"; // Shortened the spinning time to 2 seconds
+            wrap.style.transition = "background-position 2s";
             resolve();
-          }, 210); // Shortened the timeout to 210 milliseconds
+          }, 210);
 
-        }, 2000 + 700); // Shortened the timeout to 2000 milliseconds
+        }, 2000);
       } else {
         reject("Invalid color or number");
       }
