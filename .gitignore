@@ -16,6 +16,11 @@ obj/
 
 *.sln
 *.csproj
-*.pdb
-*.exe
-*.dll
+bin/
+global-teardown.js
+global-setup.js
+
+react-project/
+
+package-lock.json
+package.json

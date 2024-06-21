@@ -19,7 +19,6 @@ test.describe('Testing database files', () => {
   test('[TEST no. 1] Test database connection', async() => {
     console.log('Executing test 1');
     expect.soft(2,'Assertion failed').toBe(2);
-    console.log('Adding row to test.db');
     const dbFilePath = 'test_files/test.db';
 
     fs.appendFileSync(dbFilePath, 'value1,value2\n');

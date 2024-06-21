@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roulette Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .main {
+            flex: 1;
+            text-align: center;
+        }
+        #balance, #result, #chosenColor, #chosenBet {
+            font-size: 20px;
+            margin: 10px;
+        }
+        .color-button, .bet-button {
+            margin: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+        .win-indicator {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin: 20px auto;
+        }
+        .history {
+            flex: 1;
+            margin-left: 20px;
+            text-align: left;
+        }
+        .history p {
+            margin: 0;
+        }
+        .history-item {
+            border-bottom: 1px solid #ccc;
+            padding: 10px 0;
+            display: flex;
+            align-items: center;
+        }
+        .history-ball {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        .win-text {
+            font-weight: bold;
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <h1>Roulette Game</h1>
+        <p id="balance">Your current balance is $500.</p>
+
+        <div>
+            <p>Choose a color:</p>
+            <button class="color-button" onclick="chooseColor('red')" style="background-color: red; color: white;">Red</button>
+            <button class="color-button" onclick="chooseColor('black')" style="background-color: black; color: white;">Black</button>
+            <button class="color-button" onclick="chooseColor('green')" style="background-color: green; color: white;">Green</button>
+        </div>
+        <p id="chosenColor">Chosen color: None</p>
+
+        <div>
+            <p>Choose a bet amount:</p>
+            <button class="bet-button" onclick="chooseBet(20)">Bet $20</button>
+            <button class="bet-button" onclick="chooseBet(50)">Bet $50</button>
+            <button class="bet-button" onclick="chooseBet(100)">Bet $100</button>
+            <button class="bet-button" onclick="chooseBet(Math.floor(balance * 0.1))">Bet 10% of balance</button>
+            <button class="bet-button" onclick="doublePreviousBet()">Double Previous Bet</button>
+            <div>
+                <label for="customBet">Enter custom bet:</label>
+                <input type="number" id="customBet" min="1">
+                <button class="bet-button" onclick="chooseCustomBet()">Bet Custom Amount</button>
+            </div>
+        </div>
+        <p id="chosenBet">Chosen bet: $0</p>
+
+        <button onclick="play()">Place Bet</button>
+        <p id="result"></p>
+        <div id="winIndicator" class="win-indicator"></div>
+    </div>
+    <div class="history">
+        <h2>Game History</h2>
+        <div id="historyContainer"></div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
