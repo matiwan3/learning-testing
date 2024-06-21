@@ -3,6 +3,9 @@ let chosenColor = null;
 let chosenBet = 0;
 let previousBet = 0;
 
+// Create an audio element for the sound effect
+const soundEffect = new Audio('cash-register-sound.mp3');
+
 function chooseColor(color) {
   chosenColor = color;
   document.getElementById('chosenColor').innerHTML = `Chosen color: <strong style="color: ${color}">${color}</strong>`;
@@ -22,7 +25,6 @@ function chooseCustomBet() {
 
   if (isNaN(customBet) || customBet <= 0 || customBet > balance) {
     alert('Invalid bet amount. Please enter a valid amount within your balance.');
-
     return;
   }
   chooseBet(customBet);
@@ -33,7 +35,6 @@ function doublePreviousBet() {
 
   if (bet > balance) {
     alert('You do not have enough balance for this bet.');
-
     return;
   }
   chosenBet = bet;
@@ -55,12 +56,10 @@ function spin() {
 function play() {
   if (chosenBet === 0) {
     alert('Please choose a bet amount.');
-
     return;
   }
   if (!chosenColor) {
     alert('Please choose a color.');
-
     return;
   }
 
@@ -76,7 +75,9 @@ function play() {
       winAmount = chosenBet * 2;
     }
     balance += winAmount;
-    resultText += ` <span class="win-text" style="color: ${ result }">You win!</span>`;
+    resultText += ` <span class="win-text" style="color: ${result}">You win!</span>`;
+    // Play the sound effect when winning
+    soundEffect.play();
   } else {
     balance -= chosenBet;
     resultText += ' You lose!';
@@ -90,7 +91,6 @@ function play() {
   document.getElementById('chosenColor').innerText = 'Chosen color: None';
 
   const winIndicator = document.getElementById('winIndicator');
-
   winIndicator.style.backgroundColor = result;
 
   updateHistory(result, previousBet, balance, winAmount);
