@@ -13,9 +13,9 @@
         
         <div>
             <p>Choose a color:</p>
-            <button class="color-button" onclick="chooseColor('red')" style="background-color: red; color: white;">Red (47%)</button>
-            <button class="color-button" onclick="chooseColor('black')" style="background-color: black; color: white;">Black (47%)</button>
-            <button class="color-button" onclick="chooseColor('green')" style="background-color: green; color: white;">Green (6%)</button>
+            <button class="color-button" onclick="chooseColor('red')" style="background-color: red; color: white;">Red (x2)</button>
+            <button class="color-button" onclick="chooseColor('black')" style="background-color: black; color: white;">Black (x3)</button>
+            <button class="color-button" onclick="chooseColor('green')" style="background-color: green; color: white;">Green (x5)</button>
         </div>
         
         <div>
@@ -26,7 +26,7 @@
             <button class="bet-button" onclick="chooseBet(Math.floor(balance * 0.1))">Bet 10% of balance</button>
             <button class="bet-button" onclick="doublePreviousBet()">Double Previous Bet</button>
         </div>
-        <p id="balance">Your current balance is <strong>$500</strong>.</p>
+        <p id="balance">Your current balance is <strong><span style="color: gold">$500</span></span></strong></p>
         <p id="chosenColor">Chosen color: None</p>
         <p id="chosenBet">Chosen bet: <b>$0</b></p>
 
