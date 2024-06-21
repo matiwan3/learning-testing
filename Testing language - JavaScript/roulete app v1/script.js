@@ -5,17 +5,16 @@ let previousBet = 0;
 
 function chooseColor(color) {
   chosenColor = color;
-  document.getElementById('chosenColor').innerText = `Chosen color: ${color}`;
+  document.getElementById('chosenColor').innerHTML = `Chosen color: <strong style="color: ${color}">${color}</strong>`;
 }
 
 function chooseBet(bet) {
   if (bet > balance) {
     alert('You do not have enough balance for this bet.');
-
     return;
   }
   chosenBet = bet;
-  document.getElementById('chosenBet').innerText = `Chosen bet: $${bet}`;
+  document.getElementById('chosenBet').innerHTML = `Chosen bet: <strong>$${bet}</strong>`;
 }
 
 function chooseCustomBet() {
@@ -85,7 +84,7 @@ function play() {
 
   previousBet = chosenBet;
   chosenBet = 0;
-  document.getElementById('balance').innerText = `Your current balance is $${balance}.`;
+  document.getElementById('balance').innerHTML = `Your current balance is <strong>$${balance}</strong>.`;
   document.getElementById('result').innerHTML = resultText;
   document.getElementById('chosenBet').innerText = 'Chosen bet: $0';
   document.getElementById('chosenColor').innerText = 'Chosen color: None';
@@ -98,7 +97,7 @@ function play() {
 
   if (balance <= 0) {
     alert('You have run out of money. Game over.');
-    document.getElementById('balance').innerText = 'Your current balance is $0.';
+    document.getElementById('balance').innerText = 'Your current balance is <strong>$0<strong>.';
     document.querySelector('button').disabled = true;
   }
 }
@@ -110,7 +109,7 @@ function updateHistory(result, bet, balance, winAmount) {
   historyItem.className = 'history-item';
   historyItem.innerHTML = `
         <div class="history-ball" style="background-color: ${result}"></div>
-        <p>Bet: $${bet} | Won: $${winAmount} | Balance: $${balance}</p>
+        <p>Bet: $${bet} | Won: $${winAmount} | Balance: <strong style="color: ${result === chosenColor ? 'green' : 'red'}">$${balance}</strong></p>
     `;
   historyContainer.appendChild(historyItem);
 }
