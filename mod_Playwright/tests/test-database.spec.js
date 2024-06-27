@@ -16,11 +16,10 @@ test.describe('Testing database files', () => {
     fs.unlinkSync(dbFilePath);
   });
 
-  test('[TEST no. 1] Test database connection', async() => {
+  test('[TEST no. 1] Test database connection', async({ page }) => {
     console.log('Executing test 1');
-    expect.soft(2,'Assertion failed').toBe(2);
-    const dbFilePath = 'test_files/test.db';
+    await page.goto('https://youtube.com');
+    expect(await page.textContent('title')).toMatchSnapshot({ path: "__snapshots__/test-database.spec.js.snap" });
 
-    fs.appendFileSync(dbFilePath, 'value1,value2\n');
   });
 });
