@@ -22,12 +22,16 @@ Drawbbacks
 - translate typescript to javascript (transplantation)
 - Discipline in coding
 
-Installation
+## Installation
+```
 npm i -g typescript
 tsc -v
 index.ts
+```
 
-tsc index.ts
-
-tsc --init
-tsc
+## compile and run
+``` 
+tsc --init  
+tsc  
+tsc && node dist/index11.js
+```  

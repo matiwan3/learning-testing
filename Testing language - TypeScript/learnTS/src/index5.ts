@@ -1,4 +1,4 @@
-let employee: {
+let pracownik: {
     readonly id: number,
     name: string,
     retire: (date: Date) => void
@@ -8,4 +8,5 @@ let employee: {
     name: 'Mosh', 
     retire: (date: Date) => {
         console.log(date);
-    }};
+    }
+};
