@@ -5,22 +5,22 @@ from io import BytesIO
 # URL do PDF-a
 pdf_url = "https://storage.pdfendpoint.com/46cd30da-472d-47d8-9b9b-d8b60510391a/central-lime-magpie-v8ud52.pdf"
 
-# Pobranie pliku
+# Download PDF
 response = requests.get(pdf_url)
 response.raise_for_status()  # sprawdzenie błędu HTTP
 
-# Wczytanie PDF z pamięci
+# Load PDF into PyMuPDF
 pdf_data = BytesIO(response.content)
 doc = fitz.open(stream=pdf_data, filetype="pdf")
 
-# Wypisanie ilości stron
+# List page numbers
 print(f"📄 Liczba stron: {len(doc)}\n")
 
-# Przechodzimy przez strony i szukamy "nagłówków"
+# Iterate over each page and extract headers
 for i, page in enumerate(doc, start=1):
     blocks = page.get_text("dict")["blocks"]
     
-    # Zbierzemy największe teksty z górnej części strony jako potencjalne nagłówki
+    # Finding headers
     headers = []
     for block in blocks:
         if block["type"] == 0:  # tylko tekst
@@ -32,7 +32,7 @@ for i, page in enumerate(doc, start=1):
     print(f"--- Strona {i} ---")
     if headers:
         for h in headers:
-            print(f"🟢 Nagłówek: {h}")
+            print(f"🟢 Header: {h}")
     else:
-        print("⚠️ Brak nagłówków znalezionych.")
+        print("⚠️ Headers not found")
     print()
