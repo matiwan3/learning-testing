@@ -1,45 +1,26 @@
-# 1. Otwórz aplikację (Selenium)
-# 2. Zaloguj się, wykonaj akcję generującą PDF (np. kliknij „Export PDF”)
-# 3. Pobierz link do pliku PDF
-# 4. Pobierz plik PDF do testu (requests)
-# 5. Sparsuj i przeanalizuj PDF (PyPDF2/pdfminer)
-# 6. Sprawdź, czy zawiera oczekiwane dane (asercje)
-
-# test_pdf.py
-# -*- coding: utf-8 -*-
-import time
-import requests
 from selenium import webdriver
-from selenium.webdriver.common.by import By
-import PyPDF2
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.chrome.options import Options
+import time
+import os
 
-driver = webdriver.Chrome()
-driver.get("https://app.example.com")
+# Chrome driver version: 135.0.7049.84
+# Chrome version: 135.0.2197.91
+current_directory = os.path.dirname(os.path.realpath(__file__))  # Bieżący folder skryptu
+CHROMEDRIVER_PATH = os.path.join(current_directory, "135-0-7049-84WEBDRIVER.exe")
 
-# Login & navigate
-driver.find_element(By.ID, "username").send_keys("test_user")
-driver.find_element(By.ID, "password").send_keys("secure123")
-driver.find_element(By.ID, "login").click()
+chrome_options = Options()
+# chrome_options.add_argument("--headless")  # Odkomentuj jeśli chcesz uruchamiać w tle (bez GUI)
 
-# Generate PDF
-driver.find_element(By.ID, "generate-pdf").click()
-time.sleep(5)
+# Tworzymy Service i WebDriver
+service = Service(CHROMEDRIVER_PATH)
+driver = webdriver.Chrome(service=service, options=chrome_options)
 
-# Get PDF URL
-pdf_link = driver.find_element(By.LINK_TEXT, "Download PDF").get_attribute("href")
 
-# Download PDF
-pdf_response = requests.get(pdf_link)
-with open("report.pdf", "wb") as f:
-    f.write(pdf_response.content)
+driver.get("https://google.com")
+print("Tytuł strony:", driver.title)
 
-# Parse PDF
-with open("report.pdf", "rb") as file:
-    reader = PyPDF2.PdfReader(file)
-    text = reader.pages[0].extract_text()
+time.sleep(5)  # Czekamy 5 sek żeby zobaczyć co się dzieje
 
-# Assert
-assert "Invoice ID" in text
-assert "test_user" in text
-
+# Zamykamy przeglądarkę
 driver.quit()
