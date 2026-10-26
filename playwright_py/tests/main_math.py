@@ -6,7 +6,6 @@ print(INSTANT + PERSISTANT)
 # =====================================================
 # PYTHON: funkcje, metody, logika, pętle
 # Uruchom: python3 main_math.py
-# Zadania oznaczone TODO rozwiąż sam (na dole).
 # =====================================================
 
 
@@ -179,11 +178,14 @@ print(calc)                          # Calculator(20)
 
 # TODO 1: is_even(n) -> True gdy parzysta
 def is_even(n):
-    pass
+    return n % 2 == 0
 
 # TODO 2: factorial(n) pętlą for, factorial(5) == 120
 def factorial(n):
-    pass
+    result = 1
+    for i in range(1, n + 1):   # range(1, 6) daje 1,2,3,4,5
+        result=result*i                  # tu pomnóż result przez i
+    return result
 
 # TODO 3: fizzbuzz(n): dla 1..n wypisz "Fizz" (/3), "Buzz" (/5),
 #         "FizzBuzz" (/3 i /5), w innym wypadku liczbę
