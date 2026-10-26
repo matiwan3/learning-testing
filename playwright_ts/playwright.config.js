@@ -28,6 +28,7 @@ module.exports = defineConfig({
     // baseURL: 'http://127.0.0.1:3000',
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
+    // headless: false,
     trace: 'on-first-retry',
   },
 
@@ -35,7 +36,11 @@ module.exports = defineConfig({
   projects: [
     {
       name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
+      use: {
+        ...devices['Desktop Chrome'], 
+        headless: false,
+        launchOptions: { slowMo: 500 }, // 500 ms przerwy po każdej akcji
+      },
     },
 
     // {
