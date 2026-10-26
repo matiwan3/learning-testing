@@ -1,5 +1,3 @@
-Sure! Here are some potential interview questions for an automation tester specializing in Playwright:
-
 1. **Can you explain what Playwright is and how it differs from other automation frameworks?**
    Playwright is a powerful automation framework for web browsers that allows you to automate browser actions such as clicking buttons, filling forms, and navigating between pages. It provides a high-level API that makes it easy to write browser automation scripts in JavaScript.
 
