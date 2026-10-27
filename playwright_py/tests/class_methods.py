@@ -47,12 +47,8 @@ print(kitty)              # Kitty, 4 lat, najedzony
 
 
 kitty = Cat("Kitty")     # tworzenie obiektu (instancji)
-print(kitty.name)        # Kitty   <- atrybut
-kitty.meow()             # Kitty mówi: miau!   <- wywołanie metody
+print(kitty.name) 
 
 kitty = Cat("Kitty")
 tom = Cat("Tom")
-
-kitty.meow()   # Kitty mówi: miau!
-tom.meow()     # Tom mówi: miau!
 print(kitty.name, tom.name)   # Kitty Tom
